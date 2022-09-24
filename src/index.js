@@ -5,9 +5,10 @@ import './index.css';
 import App from './components/App';
 import { configureStore } from './store';
 import reportWebVitals from './reportWebVitals';
+import * as ReactDOMClient from 'react-dom/client';
 
 const store = configureStore();
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOMClient.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
     <React.StrictMode>

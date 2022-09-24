@@ -1,19 +1,20 @@
 // import React from 'react';
 import React from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Link, Route, Routes } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { fetchPosts } from '../actions/posts';
-import { Home, Navbar } from './';
+import Home from './Home';
+import Navbar from './Navbar';
 
 const Login = () => {
-  <div>Login</div>
-}
+  <div>Login</div>;
+};
 
 const Signup = () => {
-  <div>Signup</div>
-}
+  <div>Signup</div>;
+};
 
 // const Home = (props) => {
 //   console.log(props );
@@ -29,16 +30,18 @@ class App extends React.Component {
     const { posts } = this.props;
     return (
       <Router>
-        <div>
-          <Navbar />
-        
-          <Route exact path="/" render={(props) => {
-            return <Home {...props} posts={posts} />
-          }
-          } />
+        <Navbar />
+        <Routes>
+          <Route
+            exact
+            path="/"
+            render={(props) => {
+              return <Home {...props} posts={posts} />;
+            }}
+          />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
-        </div>
+        </Routes>
       </Router>
     );
   }
