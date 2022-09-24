@@ -15,9 +15,17 @@ export function fetchPosts() {
   };
 }
 
-export function updatePosts(posts) {
+// export function updatePosts(posts) {
+//   return {
+//     type: UPDATE_POSTS,
+//     posts,
+//   };
+// }
+
+// To update the posts
+export const updatePosts = (posts) => {
   return {
     type: UPDATE_POSTS,
-    posts,
+    posts: posts,
   };
-}
+};

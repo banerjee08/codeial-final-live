@@ -61,8 +61,8 @@ class PostsList extends Component {
   }
 }
 
-PostsList.PropTypes = {
-  posts: PropTypes.array.isRequired,
+PostsList.propTypes = {
+  posts: PropTypes.array.isRequired
 };
 
 export default PostsList;
