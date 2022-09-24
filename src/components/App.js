@@ -14,10 +14,11 @@ import { fetchPosts } from '../actions/posts';
 import Home from './Home';
 import Navbar from './Navbar';
 import Page404 from './Page404';
+import Login from './Login';
 
-const Login = () => {
-  <div>Login</div>;
-};
+// const Login = () => {
+//   <div>Login</div>;
+// };
 
 const Signup = () => {
   <div>Signup</div>;
