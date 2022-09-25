@@ -7,7 +7,7 @@ export function getFormBody(params) {
       // to convert sumanto 123 => sumanto&2020123
         let encodedValue = encodeURIComponent(params[property]);
         
-        formBody(encodedKey + '=' + encodedValue)
+        formBody.push(encodedKey + '=' + encodedValue)
     }
     // to return something like 'username=sumanto&password=123123'
     return formBody.join('&');
