@@ -1,8 +1,10 @@
 import { UPDATE_POSTS } from './actionTypes';
+import { APIUrls } from '../helpers/urls';
 
 export function fetchPosts() {
   return (dispatch) => {
-    const url = 'https://codeial.codingninjas.com:8000/api/v2/posts';
+    // const url = 'https://codeial.codingninjas.com:8000/api/v2/posts';
+    const url = APIUrls.fetchPosts();
     fetch(url)
       .then((response) => {
         // console.log('response: ', response);
