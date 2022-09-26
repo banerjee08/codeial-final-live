@@ -15,14 +15,16 @@ import Home from './Home';
 import Navbar from './Navbar';
 import Page404 from './Page404';
 import Login from './Login';
-
+import * as jwtDecode from 'jwt-decode';
+import { authenticateUser } from '../actions/auth';
+import Signup from './Signup'
 // const Login = () => {
 //   <div>Login</div>;
 // };
 
-const Signup = () => {
-  <div>Signup</div>;
-};
+// const Signup = () => {
+//   <div>Signup</div>;
+// };
 
 // const Home = (props) => {
 //   console.log(props );
@@ -32,6 +34,21 @@ const Signup = () => {
 class App extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchPosts());
+
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      const user = jwtDecode(token);
+
+      console.log('user', user);
+      this.props.dispatch(
+        authenticateUser({
+          email: user.email,
+          _id: user._id,
+          name: user.name,
+        })
+      )
+    }
   }
 
   render() {

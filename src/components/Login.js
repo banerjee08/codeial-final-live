@@ -14,14 +14,14 @@ class Login extends Component {
   }
 
   handleEmailChange = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     this.setState({
       email: e.target.value,
     });
   };
 
   handlePasswordChange = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     this.setState({
       password: e.target.value,
     });
