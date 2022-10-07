@@ -8,6 +8,9 @@ import {
   Routes,
   // Switch,
   Navigate,
+  // loc,
+  useLocation,
+  useParams,
 } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -32,6 +35,17 @@ import Signup from './Signup';
 //   return <div>Home</div>
 // }
 
+var loc = {};
+const PrivateRoute = (privateRoutesProps, { children }) => {
+  loc = useLocation();
+  const { isLoggedIn, component: Component } = privateRoutesProps;
+  const params = useParams();
+
+  return isLoggedIn ? <Component params={params} /> : <Navigate to="/login" />;
+};
+
+const Settings = () => <div>Settings</div>;
+
 class App extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchPosts());
@@ -52,9 +66,9 @@ class App extends React.Component {
     }
   }
 
+
   render() {
-    const { posts } = this.props;
-    console.log('Props', this.props);
+    const { posts, auth } = this.props;
     const { isLoggedin } = this.props.auth;
     return (
       <Router>
@@ -76,6 +90,18 @@ class App extends React.Component {
           />
           {/* <Route path="/register" element={<Register />} /> */}
           <Route path="/signup" element={<Signup />} />
+          {/* <Route path="/settings" element={<Settings />} /> */}
+          {/* <PrivateRoute
+            path="/settings"
+            element={<Settings />}
+            isLoggedin={auth.isLoggedin}
+          /> */}
+          <Route
+            path="/settings"
+            element={
+              <PrivateRoute isLoggedIn={isLoggedin} component={Settings} />
+            }
+          />
           <Route path="*" element={<Page404 />} />
           {/* </Switch> */}
         </Routes>

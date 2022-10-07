@@ -7,13 +7,13 @@ class Navbar extends React.Component {
   logOut = () => {
     localStorage.removeItem('token');
     this.props.dispatch(logoutUser());
-  }
+  };
   render() {
     const { auth } = this.props;
     return (
       <nav className="nav">
         <div className="left-div">
-          <Link to="/">
+          <Link to="/settings">
             <img
               src="https://ninjasfiles.s3.amazonaws.com/0000000000003454.png"
               alt="logo"
@@ -57,11 +57,13 @@ class Navbar extends React.Component {
         <div className="right-nav">
           {auth.isLoggedin && (
             <div className="user">
-              <img
-                src="https://cdn-icons-png.flaticon.com/512/3177/3177440.png"
-                alt="user-dp"
-                id="user-dp"
-              />
+              <Link to="/settings">
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/3177/3177440.png"
+                  alt="user-dp"
+                  id="user-dp"
+                />
+              </Link>
               <span>{auth.user.name}</span>
             </div>
           )}
@@ -73,11 +75,7 @@ class Navbar extends React.Component {
                   <Link to="/login">Log in</Link>
                 </li>
               )}
-              {auth.isLoggedin && (
-                <li onClick={this.logOut}>
-                  Log out
-                </li>
-              )}
+              {auth.isLoggedin && <li onClick={this.logOut}>Log out</li>}
               {!auth.isLoggedin && (
                 <li>
                   <Link to="/signup">Register</Link>
