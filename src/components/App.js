@@ -15,7 +15,7 @@ import Home from './Home';
 import Navbar from './Navbar';
 import Page404 from './Page404';
 import Login from './Login';
-import * as jwtDecode from 'jwt-decode';
+import jwtDecode from 'jwt-decode'; 
 import { authenticateUser } from '../actions/auth';
 import Signup from './Signup'
 // const Login = () => {

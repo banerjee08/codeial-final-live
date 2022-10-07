@@ -22,7 +22,7 @@ class Signup extends Component {
     onFormSubmit = (e) => {
         e.preventDefault();
         const { email, password, confirmPassword, name } = this.state;
-        
+        console.log(this.state);
         if (email && password && confirmPassword && name) {
             this.props.dispatch(startSignup());
             this.props.dispatch(signup(email, password, confirmPassword, name))
@@ -50,15 +50,30 @@ class Signup extends Component {
             required
             onChange={(e) => this.handleInputChange('email', e.target.value)}
           />
-            </div>
-            <div className="field">
-                <input placeholder="Confirm password" type="password" required onChange={(e) => this.handleInputChange('password', e.target.value)}/>
-            </div>
-            <div className="field">
-                <button onClick={this.onFormSubmit} disabled={inProgress}>
-                    Signup
-                </button>
-            </div>
+        </div>
+        <div className="field">
+          <input
+            placeholder="Password"
+            type="password"
+            required
+            onChange={(e) => this.handleInputChange('password', e.target.value)}
+          />
+        </div>
+        <div className="field">
+          <input
+            placeholder="Confirm password"
+            type="password"
+            required
+            onChange={(e) =>
+              this.handleInputChange('confirmPassword', e.target.value)
+            }
+          />
+        </div>
+        <div className="field">
+          <button onClick={this.onFormSubmit} disabled={inProgress}>
+            Signup
+          </button>
+        </div>
       </form>
     );
   }

@@ -46,7 +46,7 @@ export function login(email, password) {
         console.log('data', data);
         if (data.success) {
           // dispatch action to save user
-          dispatch.loginSuccess(data.data.user);
+          dispatch(loginSuccess(data.data.user));
           return;
         }
         // if it is not successful then we have to dispatch an action saying login LOGIN_FAILED
@@ -79,7 +79,7 @@ export function signup(email, password, confirmPassword, name) {
       body: getFormBody({
         email,
         password,
-        confirm_Password: confirmPassword,
+        confirm_password: confirmPassword,
         name,
       }),
     })
