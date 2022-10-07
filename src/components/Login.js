@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { login } from '../actions/auth';
+import { login, clearAuthState } from '../actions/auth';
+import Home from './Home';
 
 class Login extends Component {
   constructor(props) {
@@ -11,6 +12,10 @@ class Login extends Component {
       email: '',
       password: '',
     };
+  }
+
+  componentWillUnmount() {
+    this.props.dispatch(clearAuthState());
   }
 
   handleEmailChange = (e) => {
@@ -31,6 +36,7 @@ class Login extends Component {
     e.preventDefault();
     // console.log('this.emailInputRef', this.emailInputRef);
     // console.log('this.passwordInputRef', this.passwordInputRef);
+    
     console.log('this.state', this.state);
     const { email, password } = this.state;
 
@@ -40,8 +46,8 @@ class Login extends Component {
   };
 
   render() {
-    const { error, inProgress } = this.props.auth;
-
+    const { error, inProgress, isLoggedin } = this.props.auth;
+  
     return (
       <form className="login-form">
         <span className="login-signup-header">Log In</span>

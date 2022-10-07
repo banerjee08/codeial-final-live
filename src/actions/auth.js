@@ -8,6 +8,7 @@ import { LOG_OUT } from './actionTypes';
 import { SIGNUP_START } from './actionTypes';
 import { SIGNUP_FAILED } from './actionTypes';
 import { SIGNUP_SUCCESS } from './actionTypes';
+import { CLEAR_AUTH_STATE } from './actionTypes';
 
 export function startLogin() {
   return {
@@ -113,4 +114,10 @@ export function signupSuccessful(user) {
         type: SIGNUP_SUCCESS,
         user,
     }
+}
+
+export function clearAuthState() {
+  return {
+    type: CLEAR_AUTH_STATE,
+  }
 }

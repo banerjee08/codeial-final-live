@@ -1,36 +1,41 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { startSignup, signup } from '../actions/auth';
+import { startSignup, signup, clearAuthState } from '../actions/auth';
+import Home from './Home';
 
 class Signup extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            email: '',
-            password: '',
-            name: '',
-            confirmPassword: '',
-        }
-    }
-
-    handleInputChange = (field, value) => {
-        this.setState({
-            [field]: value,
-        });
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '',
+      password: '',
+      name: '',
+      confirmPassword: '',
     };
+  }
+  componentWillUnmount() {
+    this.props.dispatch(clearAuthState());
+  }
 
-    onFormSubmit = (e) => {
-        e.preventDefault();
-        const { email, password, confirmPassword, name } = this.state;
-        console.log(this.state);
-        if (email && password && confirmPassword && name) {
-            this.props.dispatch(startSignup());
-            this.props.dispatch(signup(email, password, confirmPassword, name))
-        }
+  handleInputChange = (field, value) => {
+    this.setState({
+      [field]: value,
+    });
+  };
+
+  onFormSubmit = (e) => {
+    e.preventDefault();
+    const { email, password, confirmPassword, name } = this.state;
+    console.log(this.state);
+    if (email && password && confirmPassword && name) {
+      this.props.dispatch(startSignup());
+      this.props.dispatch(signup(email, password, confirmPassword, name));
     }
+  };
 
   render() {
-    const { inProgress, error } = this.props.auth;
+    const { inProgress, error, isLoggedin } = this.props.auth;
+
     return (
       <form className="login-form">
         <span className="login-signup-header">Signup</span>
@@ -80,7 +85,7 @@ class Signup extends Component {
 }
 
 const mapStateToProps = ({ auth }) => ({
-    auth,
-})
+  auth,
+});
 
 export default connect(mapStateToProps)(Signup);
